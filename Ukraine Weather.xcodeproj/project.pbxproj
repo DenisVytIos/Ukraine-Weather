@@ -14,6 +14,14 @@
 		920669942323B36000793D85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 920669932323B36000793D85 /* Assets.xcassets */; };
 		920669972323B36000793D85 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 920669952323B36000793D85 /* LaunchScreen.storyboard */; };
 		920669A12323C26300793D85 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920669A02323C26300793D85 /* NetworkManager.swift */; };
+		920669A42323CA7200793D85 /* OfferModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920669A32323CA7200793D85 /* OfferModel.swift */; };
+		92151C7F23255F290020C29F /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92151C7E23255F290020C29F /* CityModel.swift */; };
+		92151C81232568FE0020C29F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92151C80232568FE0020C29F /* MainView.swift */; };
+		92151C84232581710020C29F /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92151C83232581710020C29F /* MainView.xib */; };
+		92C57B0323261D6500FA00ED /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C57B0123261D6500FA00ED /* CustomTableViewCell.swift */; };
+		92C57B0423261D6500FA00ED /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92C57B0223261D6500FA00ED /* CustomTableViewCell.xib */; };
+		92ED7A3823253A1B00220DE2 /* ListOfferModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED7A3723253A1B00220DE2 /* ListOfferModel.swift */; };
+		92ED7A3A23253C8B00220DE2 /* MainOfferModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED7A3923253C8B00220DE2 /* MainOfferModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +34,14 @@
 		920669962323B36000793D85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		920669982323B36000793D85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		920669A02323C26300793D85 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		920669A32323CA7200793D85 /* OfferModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferModel.swift; sourceTree = "<group>"; };
+		92151C7E23255F290020C29F /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
+		92151C80232568FE0020C29F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		92151C83232581710020C29F /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
+		92C57B0123261D6500FA00ED /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		92C57B0223261D6500FA00ED /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		92ED7A3723253A1B00220DE2 /* ListOfferModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfferModel.swift; sourceTree = "<group>"; };
+		92ED7A3923253C8B00220DE2 /* MainOfferModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainOfferModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +74,9 @@
 		920669882323B35F00793D85 /* Ukraine Weather */ = {
 			isa = PBXGroup;
 			children = (
+				92C57AFF23261CD700FA00ED /* Custom Views */,
+				92151C82232581110020C29F /* Screens */,
+				920669A22323C9DB00793D85 /* Models */,
 				9206699F2323C1B700793D85 /* Managers */,
 				920669892323B35F00793D85 /* AppDelegate.swift */,
 				9206698B2323B35F00793D85 /* ViewController.swift */,
@@ -76,6 +95,43 @@
 				920669A02323C26300793D85 /* NetworkManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		920669A22323C9DB00793D85 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				920669A32323CA7200793D85 /* OfferModel.swift */,
+				92ED7A3723253A1B00220DE2 /* ListOfferModel.swift */,
+				92ED7A3923253C8B00220DE2 /* MainOfferModel.swift */,
+				92151C7E23255F290020C29F /* CityModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		92151C82232581110020C29F /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				92151C80232568FE0020C29F /* MainView.swift */,
+				92151C83232581710020C29F /* MainView.xib */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		92C57AFF23261CD700FA00ED /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				92C57B0023261D0000FA00ED /* Cells */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		92C57B0023261D0000FA00ED /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				92C57B0123261D6500FA00ED /* CustomTableViewCell.swift */,
+				92C57B0223261D6500FA00ED /* CustomTableViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +193,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				920669972323B36000793D85 /* LaunchScreen.storyboard in Resources */,
+				92151C84232581710020C29F /* MainView.xib in Resources */,
 				920669942323B36000793D85 /* Assets.xcassets in Resources */,
+				92C57B0423261D6500FA00ED /* CustomTableViewCell.xib in Resources */,
 				9206698F2323B35F00793D85 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,9 +207,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92ED7A3823253A1B00220DE2 /* ListOfferModel.swift in Sources */,
+				92151C81232568FE0020C29F /* MainView.swift in Sources */,
 				920669A12323C26300793D85 /* NetworkManager.swift in Sources */,
 				920669922323B35F00793D85 /* Ukraine_Weather.xcdatamodeld in Sources */,
+				920669A42323CA7200793D85 /* OfferModel.swift in Sources */,
+				92151C7F23255F290020C29F /* CityModel.swift in Sources */,
+				92C57B0323261D6500FA00ED /* CustomTableViewCell.swift in Sources */,
 				9206698C2323B35F00793D85 /* ViewController.swift in Sources */,
+				92ED7A3A23253C8B00220DE2 /* MainOfferModel.swift in Sources */,
 				9206698A2323B35F00793D85 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
