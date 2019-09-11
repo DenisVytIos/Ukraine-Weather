@@ -9,21 +9,22 @@
 import UIKit
 
 class ViewController: UIViewController, UISearchResultsUpdating, UITableViewDataSource, UITableViewDelegate {
-
    var timer = Timer()
   
   fileprivate var contentView: MainView {
     return self.view as! MainView
   }
+  var tempDetail: String?
   var dataIsReady: Bool = false
-  var offerModel: OfferModel! {
+  
+   var offerModel: OfferModel! {
     didSet {
       DispatchQueue.main.async {
         self.contentView.tableView.reloadData()
+
       }
     }
   }
-  
   override func loadView() {
     super.loadView()
 //    self.view = MainView()
@@ -34,11 +35,12 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
     
     self.setupNavigationBar()
    (self.view as! MainView).tableView.dataSource = self
+    (self.view as! MainView).tableView.delegate = self
 //    self.contentView.tableView.dataSource = self
   }
 
   fileprivate func setupNavigationBar() {
-    self.navigationItem.title = "Weather Application"
+    self.navigationItem.title = "Weather in Ukraine"
     self.navigationController?.navigationBar.prefersLargeTitles = true
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -58,6 +60,7 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
           if model != nil {
             self.dataIsReady = true
             self.offerModel = model
+            
           }
         })
       })
@@ -71,8 +74,6 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
     } else {
       return 0
     }
-    
-    
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,6 +85,19 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
      cell.tempLabel.text = self.offerModel.list![indexPath.row].main!.temp!.description
      cell.tempMaxLabel.text = self.offerModel.list![indexPath.row].main!.temp_max!.description
     return cell
+  }
+   //MARK: - UITableViewDelegate
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return UITableView.automaticDimension
+  }
+  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 350
+  }
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    navigationController?.pushViewController(DetailViewController(parameter: "\(self.offerModel.city!.name ?? "City")"), animated: true)
+    }
+  override func prepareForInterfaceBuilder() {
+    
   }
   
 }
