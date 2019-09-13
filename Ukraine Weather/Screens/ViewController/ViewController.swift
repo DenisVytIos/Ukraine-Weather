@@ -11,16 +11,21 @@ import UIKit
 class ViewController: UIViewController, UISearchResultsUpdating, UITableViewDataSource, UITableViewDelegate {
    var timer = Timer()
   
-  fileprivate var contentView: MainView {
-    return self.view as! MainView
-  }
+  
+  @IBOutlet weak var tableView: UITableView!
+  
+  
+  
+  //  fileprivate var contentView: MainView {
+//    return self.view as! MainView
+//  }
   var tempDetail: String?
   var dataIsReady: Bool = false
   
    var offerModel: OfferModel! {
     didSet {
       DispatchQueue.main.async {
-        self.contentView.tableView.reloadData()
+        self.tableView.reloadData()
 
       }
     }
@@ -34,8 +39,8 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
     super.viewDidLoad()
     
     self.setupNavigationBar()
-   (self.view as! MainView).tableView.dataSource = self
-    (self.view as! MainView).tableView.delegate = self
+   tableView.dataSource = self
+   tableView.delegate = self
 //    self.contentView.tableView.dataSource = self
   }
 
@@ -79,11 +84,11 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell") as! CustomTableViewCell
-    cell.cityLabel.text = self.offerModel.city!.name
-    cell.timeLabel.text = self.offerModel.list![indexPath.row].dt_txt
-    cell.tempMinLabel.text = self.offerModel.list![indexPath.row].main!.temp_min!.description
-     cell.tempLabel.text = self.offerModel.list![indexPath.row].main!.temp!.description
-     cell.tempMaxLabel.text = self.offerModel.list![indexPath.row].main!.temp_max!.description
+//    cell.cityLabel.text = self.offerModel.city!.name
+//    cell.timeLabel.text = self.offerModel.list![indexPath.row].dt_txt
+//    cell.tempMinLabel.text = self.offerModel.list![indexPath.row].main!.temp_min!.description
+//     cell.tempLabel.text = self.offerModel.list![indexPath.row].main!.temp!.description
+//     cell.tempMaxLabel.text = self.offerModel.list![indexPath.row].main!.temp_max!.description
     return cell
   }
    //MARK: - UITableViewDelegate
@@ -91,14 +96,24 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
     return UITableView.automaticDimension
   }
   func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 350
+    return 500
   }
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    navigationController?.pushViewController(DetailViewController(parameter: "\(self.offerModel.city!.name ?? "City")"), animated: true)
-    }
-  override func prepareForInterfaceBuilder() {
+//  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//    navigationController?.pushViewController(DetailViewController(parameter: "\(self.offerModel.city!.name ?? "City")"), animated: true)
+//    }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    let destinationVC: DetailViewController = segue.destination as! DetailViewController
+//    if let identifier = segue.identifier {
+//      if let cell = sender as? CustomTableViewCell,
+//      let indexPath = tableView.indexPath(for: cell),
+////        let seguedToMVC = segue.destination as? DetailViewController {
+//        seguedToMVC.city = self.offerModel.city!.name ?? "City"
+//      }
     
-  }
+ destinationVC.city = self.offerModel.city!.name ?? "City"
+ 
   
 }
 
+}

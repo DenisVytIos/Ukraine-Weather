@@ -25,10 +25,10 @@ class CustomTableViewCell: UITableViewCell {
     return "CustomTableViewCell"
   }
   
-  @IBOutlet weak var cityLabel: UILabel!
-  @IBOutlet weak var tempMaxLabel: UILabel!
-  
-  @IBOutlet weak var tempMinLabel: UILabel!
-  @IBOutlet weak var tempLabel: UILabel!
-  @IBOutlet weak var timeLabel: UILabel!
+//  @IBOutlet weak var cityLabel: UILabel!
+//  @IBOutlet weak var tempMaxLabel: UILabel!
+//
+//  @IBOutlet weak var tempMinLabel: UILabel!
+//  @IBOutlet weak var tempLabel: UILabel!
+//  @IBOutlet weak var timeLabel: UILabel!
 }

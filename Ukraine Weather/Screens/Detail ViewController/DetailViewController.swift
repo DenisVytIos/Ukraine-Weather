@@ -10,27 +10,30 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-  let parameter: String
+//  let parameter: String
+    var city: String?
   
-  init(parameter: String) {
-    self.parameter = parameter
-    super.init(nibName: "DetailViewController", bundle: nil)
-  }
+  @IBOutlet weak var label: UILabel!
+  //  init(parameter: String) {
+//    self.parameter = parameter
+//    super.init(nibName: "DetailViewController", bundle: nil)
+//  }
+//
+//  required init?(coder aDecoder: NSCoder) {
+//    fatalError("init(coder:) has not been implemented")
+//  }
+//
   
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
-  
-  @IBOutlet weak var temp: UILabel!
+ 
  
   override func viewDidLoad() {
         super.viewDidLoad()
      self.view.backgroundColor = UIColor.green
-    temp.text = self.parameter
-  
-     temp.backgroundColor = UIColor.black
-    temp.textColor = UIColor.white
+    self.label.text = self.city
+//    temp.text = self.parameter
+//  
+//     temp.backgroundColor = UIColor.black
+//    temp.textColor = UIColor.white
         // Do any additional setup after loading the view.
     }
   
