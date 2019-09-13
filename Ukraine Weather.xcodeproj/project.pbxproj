@@ -21,6 +21,8 @@
 		92A3334C23269A8900246B7E /* OfferModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3334B23269A8900246B7E /* OfferModel.swift */; };
 		92A333572326AE2800246B7E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A333552326AE2800246B7E /* DetailViewController.swift */; };
 		92C57B0323261D6500FA00ED /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C57B0123261D6500FA00ED /* CustomTableViewCell.swift */; };
+		92E502D9232B9D210004EDB7 /* TempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E502D8232B9D210004EDB7 /* TempView.swift */; };
+		92E502DC232BA1440004EDB7 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E502DB232BA1440004EDB7 /* Extension+UIView.swift */; };
 		92ED7A3823253A1B00220DE2 /* ListOfferModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED7A3723253A1B00220DE2 /* ListOfferModel.swift */; };
 		92ED7A3A23253C8B00220DE2 /* MainOfferModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED7A3923253C8B00220DE2 /* MainOfferModel.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +44,8 @@
 		92A3334B23269A8900246B7E /* OfferModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferModel.swift; sourceTree = "<group>"; };
 		92A333552326AE2800246B7E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		92C57B0123261D6500FA00ED /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		92E502D8232B9D210004EDB7 /* TempView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempView.swift; sourceTree = "<group>"; };
+		92E502DB232BA1440004EDB7 /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		92ED7A3723253A1B00220DE2 /* ListOfferModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfferModel.swift; sourceTree = "<group>"; };
 		92ED7A3923253C8B00220DE2 /* MainOfferModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainOfferModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +80,7 @@
 		920669882323B35F00793D85 /* Ukraine Weather */ = {
 			isa = PBXGroup;
 			children = (
+				92E502DA232BA0FD0004EDB7 /* Extension */,
 				92C57AFF23261CD700FA00ED /* Custom Views */,
 				92151C82232581110020C29F /* Screens */,
 				920669A22323C9DB00793D85 /* Models */,
@@ -148,6 +153,7 @@
 		92C57AFF23261CD700FA00ED /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				92E502D7232B9CE60004EDB7 /* Temp View */,
 				92C57B0023261D0000FA00ED /* Cells */,
 			);
 			path = "Custom Views";
@@ -159,6 +165,22 @@
 				92C57B0123261D6500FA00ED /* CustomTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		92E502D7232B9CE60004EDB7 /* Temp View */ = {
+			isa = PBXGroup;
+			children = (
+				92E502D8232B9D210004EDB7 /* TempView.swift */,
+			);
+			path = "Temp View";
+			sourceTree = "<group>";
+		};
+		92E502DA232BA0FD0004EDB7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				92E502DB232BA1440004EDB7 /* Extension+UIView.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,12 +255,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92E502DC232BA1440004EDB7 /* Extension+UIView.swift in Sources */,
 				926D146B2328D8890011E8AC /* DetailModel.swift in Sources */,
 				92A333572326AE2800246B7E /* DetailViewController.swift in Sources */,
 				92ED7A3823253A1B00220DE2 /* ListOfferModel.swift in Sources */,
 				92151C81232568FE0020C29F /* MainView.swift in Sources */,
 				92A3334C23269A8900246B7E /* OfferModel.swift in Sources */,
 				920669A12323C26300793D85 /* NetworkManager.swift in Sources */,
+				92E502D9232B9D210004EDB7 /* TempView.swift in Sources */,
 				920669922323B35F00793D85 /* Ukraine_Weather.xcdatamodeld in Sources */,
 				92151C7F23255F290020C29F /* CityModel.swift in Sources */,
 				92C57B0323261D6500FA00ED /* CustomTableViewCell.swift in Sources */,

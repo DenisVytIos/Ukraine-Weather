@@ -28,8 +28,8 @@ class DetailViewController: UIViewController {
  
   override func viewDidLoad() {
         super.viewDidLoad()
-     self.view.backgroundColor = UIColor.green
-    self.label.text = self.city
+//     self.view.backgroundColor = UIColor.green
+//    self.label.text = self.city
 //    temp.text = self.parameter
 //  
 //     temp.backgroundColor = UIColor.black

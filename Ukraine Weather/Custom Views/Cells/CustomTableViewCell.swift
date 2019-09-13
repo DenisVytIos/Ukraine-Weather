@@ -10,25 +10,19 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
 
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
+  @IBOutlet weak var tempView: UIView!
+  
+  @IBOutlet weak var inTempViewLabel: UILabel!
   
   override var reuseIdentifier: String? {
     return "CustomTableViewCell"
   }
   
-//  @IBOutlet weak var cityLabel: UILabel!
-//  @IBOutlet weak var tempMaxLabel: UILabel!
-//
-//  @IBOutlet weak var tempMinLabel: UILabel!
-//  @IBOutlet weak var tempLabel: UILabel!
-//  @IBOutlet weak var timeLabel: UILabel!
+  override func didMoveToSuperview() {
+    self.tempView.round()
+    self.inTempViewLabel.text = "6"
+    
+  }
+
+
 }

@@ -14,6 +14,11 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
   
   @IBOutlet weak var tableView: UITableView!
   
+
+
+  
+  
+  
   
   
   //  fileprivate var contentView: MainView {
@@ -30,8 +35,13 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
       }
     }
   }
+  
+  override func viewDidLayoutSubviews() {
+  
+  }
   override func loadView() {
     super.loadView()
+//    self.tempView.round()
 //    self.view = MainView()
   }
 
@@ -41,6 +51,7 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
     self.setupNavigationBar()
    tableView.dataSource = self
    tableView.delegate = self
+
 //    self.contentView.tableView.dataSource = self
   }
 
@@ -48,8 +59,10 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
     self.navigationItem.title = "Weather in Ukraine"
     self.navigationController?.navigationBar.prefersLargeTitles = true
     
+    
     let searchController = UISearchController(searchResultsController: nil)
     searchController.searchResultsUpdater = self
+    
     
     navigationItem.searchController = searchController
     navigationItem.hidesSearchBarWhenScrolling = false
@@ -84,6 +97,7 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell") as! CustomTableViewCell
+    cell.backgroundColor = UIColor.gray
 //    cell.cityLabel.text = self.offerModel.city!.name
 //    cell.timeLabel.text = self.offerModel.list![indexPath.row].dt_txt
 //    cell.tempMinLabel.text = self.offerModel.list![indexPath.row].main!.temp_min!.description
