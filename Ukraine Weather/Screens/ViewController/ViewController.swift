@@ -9,14 +9,16 @@
 import UIKit
 
 class ViewController: UIViewController, UISearchResultsUpdating, UITableViewDataSource, UITableViewDelegate {
+  
    var timer = Timer()
   
   
   @IBOutlet weak var tableView: UITableView!
   
 
-
   
+
+ 
   
   
   
@@ -35,7 +37,7 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
       }
     }
   }
-  
+ 
   override func viewDidLayoutSubviews() {
   
   }
@@ -43,6 +45,7 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
     super.loadView()
 //    self.tempView.round()
 //    self.view = MainView()
+  
   }
 
   override func viewDidLoad() {
@@ -53,6 +56,7 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
    tableView.delegate = self
 
 //    self.contentView.tableView.dataSource = self
+    
   }
 
   fileprivate func setupNavigationBar() {
@@ -81,6 +85,7 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
             
           }
         })
+        CoreDataManager.shared.save()
       })
     }
   }
@@ -98,10 +103,13 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell") as! CustomTableViewCell
     cell.backgroundColor = UIColor.gray
-//    cell.cityLabel.text = self.offerModel.city!.name
+   cell.cityLabel.text = self.offerModel.city!.name
+  
+    
 //    cell.timeLabel.text = self.offerModel.list![indexPath.row].dt_txt
 //    cell.tempMinLabel.text = self.offerModel.list![indexPath.row].main!.temp_min!.description
-//     cell.tempLabel.text = self.offerModel.list![indexPath.row].main!.temp!.description
+     cell.inTempViewLabel.text = self.offerModel.list![indexPath.row].main!.temp!.description
+    CoreDataManager.shared.save(temp: self.offerModel.list![indexPath.row].main!.temp!)
 //     cell.tempMaxLabel.text = self.offerModel.list![indexPath.row].main!.temp_max!.description
     return cell
   }
@@ -126,7 +134,7 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
 //      }
     
  destinationVC.city = self.offerModel.city!.name ?? "City"
- 
+ CoreDataManager.shared.load()
   
 }
 

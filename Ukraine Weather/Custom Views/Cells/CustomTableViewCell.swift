@@ -14,13 +14,15 @@ class CustomTableViewCell: UITableViewCell {
   
   @IBOutlet weak var inTempViewLabel: UILabel!
   
+  @IBOutlet weak var cityLabel: UILabel!
+  
   override var reuseIdentifier: String? {
     return "CustomTableViewCell"
   }
   
   override func didMoveToSuperview() {
     self.tempView.round()
-    self.inTempViewLabel.text = "6"
+//    self.inTempViewLabel.text = "6"
     
   }
 

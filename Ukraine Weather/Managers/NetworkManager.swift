@@ -33,6 +33,7 @@ class NetworkManager {
         
         if data != nil {
           decoderOfferModel = try? decoder.decode(OfferModel.self, from: data!)
+          
         }
         result(decoderOfferModel)
       } else {

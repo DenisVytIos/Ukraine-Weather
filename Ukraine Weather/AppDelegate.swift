@@ -43,6 +43,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Saves changes in the application's managed object context before the application terminates.
     self.saveContext()
   }
+  
+  static var container: NSPersistentContainer {
+    return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+  }
 
   // MARK: - Core Data stack
 
