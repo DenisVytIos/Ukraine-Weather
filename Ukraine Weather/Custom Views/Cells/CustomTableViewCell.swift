@@ -16,6 +16,15 @@ class CustomTableViewCell: UITableViewCell {
   
   @IBOutlet weak var cityLabel: UILabel!
   
+  @IBOutlet weak var timeLabel: UILabel!
+  
+
+  @IBOutlet weak var airPressureLabel: UIView!
+  
+  @IBOutlet weak var windSpeedlabel: UILabel!
+  
+  
+
   override var reuseIdentifier: String? {
     return "CustomTableViewCell"
   }

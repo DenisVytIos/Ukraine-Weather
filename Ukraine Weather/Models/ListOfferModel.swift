@@ -13,4 +13,5 @@ class ListOfferModel: Codable {
   var main: MainOfferModel?
   //  "dt_txt": "2019-09-08 18:00:00"
   var dt_txt: String?
+  var wind: WindModel?
 }

@@ -45,6 +45,19 @@ let container = AppDelegate.container
     
   }
   
+  func save( city: String) {
+    container.viewContext.perform {
+      //    cell.timeLabel.text = self.offerModel.list![indexPath.row].dt_txt
+      //    cell.tempMinLabel.text = self.offerModel.list![indexPath.row].main!.temp_min!.description
+      //     cell.tempLabel.text = self.offerModel.list![indexPath.row].main!.temp!.description
+      //     cell.tempMaxLabel.text = self.offerModel.list![indexPath.row].main!.temp_max!.description
+      let mainOfferEntity = MainOfferEntity(context: self.container.viewContext)
+      
+      mainOfferEntity.city = city
+      print("save")
+    }
+    
+  }
 func load() {
   let request: NSFetchRequest<MainOfferEntity> = MainOfferEntity.fetchRequest()
   let mainOfferEntitys = try? container.viewContext.fetch(request)
@@ -58,5 +71,13 @@ func load() {
     print(mainOfferEntitys?.last?.temp)
    
     return "\(String(describing: mainOfferEntitys?.last?.temp))"
+  }
+  func loadCity() ->  String {
+    let request: NSFetchRequest<MainOfferEntity> = MainOfferEntity.fetchRequest()
+    let mainOfferEntitys = try? container.viewContext.fetch(request)
+    print("load")
+    print(mainOfferEntitys?.last?.city ?? "")
+    let city = (String(describing: mainOfferEntitys?.last?.city))
+    return "\(city)"
   }
 }

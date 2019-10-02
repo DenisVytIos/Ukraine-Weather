@@ -10,22 +10,13 @@ import UIKit
 
 class ViewController: UIViewController, UISearchResultsUpdating, UITableViewDataSource, UITableViewDelegate {
   
+ 
+  
    var timer = Timer()
   
   
   @IBOutlet weak var tableView: UITableView!
-  
 
-  
-
- 
-  
-  
-  
-  
-  //  fileprivate var contentView: MainView {
-//    return self.view as! MainView
-//  }
   var tempDetail: String?
   var dataIsReady: Bool = false
   
@@ -38,6 +29,9 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
     }
   }
  
+  // tempVar
+  var tempVar: String?
+  
   override func viewDidLayoutSubviews() {
   
   }
@@ -85,7 +79,7 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
             
           }
         })
-        CoreDataManager.shared.save()
+        
       })
     }
   }
@@ -103,13 +97,28 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell") as! CustomTableViewCell
     cell.backgroundColor = UIColor.gray
-   cell.cityLabel.text = self.offerModel.city!.name
-  
     
-//    cell.timeLabel.text = self.offerModel.list![indexPath.row].dt_txt
-//    cell.tempMinLabel.text = self.offerModel.list![indexPath.row].main!.temp_min!.description
-     cell.inTempViewLabel.text = self.offerModel.list![indexPath.row].main!.temp!.description
-    CoreDataManager.shared.save(temp: self.offerModel.list![indexPath.row].main!.temp!)
+   cell.cityLabel.text = self.offerModel.city!.name
+//    CoreDataManager.shared.save(city: self.offerModel.city!.name ?? "City")
+    
+   cell.timeLabel.text = self.offerModel.list![indexPath.row].dt_txt
+    print(self.offerModel.list![indexPath.row].dt_txt)
+    
+    cell.windSpeedlabel.text = String(format: "%.2f m/s", self.offerModel.list![indexPath.row].wind!.speed!)
+    print(String(format: "%.0f", self.offerModel.list![indexPath.row].wind!.speed!))
+    
+     let kelvinTemp = self.offerModel.list![indexPath.row].main!.temp!
+      let celsiusTemp = kelvinTemp - 273.15
+    let formatedCelsiusTemp = String(format: "%.0f", celsiusTemp)
+      cell.inTempViewLabel.text = formatedCelsiusTemp
+   
+//    self.tempVar = formatedCelsiusTemp
+   
+//      self.tempVar = String(format: "%.0f", celsiusTemp)
+   
+    
+//    self.tempVar = self.offerModel.list![indexPath.row].main!.temp!.description
+//   CoreDataManager.shared.save(temp: self.offerModel.list![indexPath.row].main!.temp!)
 //     cell.tempMaxLabel.text = self.offerModel.list![indexPath.row].main!.temp_max!.description
     return cell
   }
@@ -120,22 +129,29 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
   func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
     return 500
   }
-//  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let cell = tableView.cellForRow(at: indexPath) as! CustomTableViewCell
+    self.tempVar = cell.inTempViewLabel.text
 //    navigationController?.pushViewController(DetailViewController(parameter: "\(self.offerModel.city!.name ?? "City")"), animated: true)
-//    }
+    
+    }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     let destinationVC: DetailViewController = segue.destination as! DetailViewController
-//    if let identifier = segue.identifier {
-//      if let cell = sender as? CustomTableViewCell,
-//      let indexPath = tableView.indexPath(for: cell),
-////        let seguedToMVC = segue.destination as? DetailViewController {
-//        seguedToMVC.city = self.offerModel.city!.name ?? "City"
-//      }
+    if let identifier = segue.identifier {
+      if let cell = sender as? CustomTableViewCell,
+      let indexPath = tableView.indexPath(for: cell),
+        let seguedToMVC = segue.destination as? DetailViewController {
+        seguedToMVC.city = self.offerModel.city!.name ?? "City"
+        seguedToMVC.tempMain = cell.inTempViewLabel.text
+        
+      }
     
- destinationVC.city = self.offerModel.city!.name ?? "City"
- CoreDataManager.shared.load()
+// destinationVC.city = self.offerModel.city!.name ?? "City"
+//    destinationVC.tempMain = self.tempVar
+// CoreDataManager.shared.load()
   
-}
+    }
 
+}
 }

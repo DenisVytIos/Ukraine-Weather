@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9204B48D233BDCB10084CF7B /* WindModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9204B48C233BDCB10084CF7B /* WindModel.swift */; };
 		9206698A2323B35F00793D85 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920669892323B35F00793D85 /* AppDelegate.swift */; };
 		9206698C2323B35F00793D85 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9206698B2323B35F00793D85 /* ViewController.swift */; };
 		9206698F2323B35F00793D85 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9206698D2323B35F00793D85 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9204B48C233BDCB10084CF7B /* WindModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindModel.swift; sourceTree = "<group>"; };
 		920669862323B35F00793D85 /* Ukraine Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ukraine Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		920669892323B35F00793D85 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9206698B2323B35F00793D85 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				92151C7E23255F290020C29F /* CityModel.swift */,
 				92A3334B23269A8900246B7E /* OfferModel.swift */,
 				926D146A2328D8890011E8AC /* DetailModel.swift */,
+				9204B48C233BDCB10084CF7B /* WindModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				92E502DC232BA1440004EDB7 /* Extension+UIView.swift in Sources */,
 				926D146B2328D8890011E8AC /* DetailModel.swift in Sources */,
 				92A333572326AE2800246B7E /* DetailViewController.swift in Sources */,
+				9204B48D233BDCB10084CF7B /* WindModel.swift in Sources */,
 				92ED7A3823253A1B00220DE2 /* ListOfferModel.swift in Sources */,
 				92AC3F3E233B366900627D67 /* CoreDataManager.swift in Sources */,
 				92A024BD233A751200BBDC60 /* MainOfferEntity.swift in Sources */,

@@ -11,31 +11,29 @@ import UIKit
 class DetailViewController: UIViewController {
   
 
-//  let parameter: String
+//  let parameter: String = ""
     var city: String?
+  var tempMain: String?
   @IBOutlet weak var mainTempLabel: UILabel!
   
   @IBOutlet weak var label: UILabel!
-  //  init(parameter: String) {
+//    init(parameter: String) {
 //    self.parameter = parameter
-//    super.init(nibName: "DetailViewController", bundle: nil)
+//      super.init(nibName: nil, bundle:)
 //  }
 //
 //  required init?(coder aDecoder: NSCoder) {
 //    fatalError("init(coder:) has not been implemented")
 //  }
-//
+
   
-  var tempCor = {
-    return CoreDataManager.shared.loadTemp()
-    
-  }
  
   override func viewDidLoad() {
         super.viewDidLoad()
     self.mainTempLabel.textColor = UIColor.black
-    self.mainTempLabel.text = CoreDataManager.shared.loadTemp()
-    
+    self.mainTempLabel.text = tempMain
+    print(self.tempMain)
+    setupNavigationBar()
 //     self.view.backgroundColor = UIColor.green
 //    self.label.text = self.city
 //    temp.text = self.parameter
@@ -46,7 +44,9 @@ class DetailViewController: UIViewController {
     }
   
   fileprivate func setupNavigationBar() {
-    self.navigationItem.title = "City"
+    
+   
+    self.navigationItem.title = self.city
     self.navigationController?.navigationBar.prefersLargeTitles = true
     
     
