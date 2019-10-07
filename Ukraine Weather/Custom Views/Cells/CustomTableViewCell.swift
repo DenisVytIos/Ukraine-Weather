@@ -19,7 +19,8 @@ class CustomTableViewCell: UITableViewCell {
   @IBOutlet weak var timeLabel: UILabel!
   
 
-  @IBOutlet weak var airPressureLabel: UIView!
+  @IBOutlet weak var airPressureLabel: UILabel!
+  
   
   @IBOutlet weak var windSpeedlabel: UILabel!
   

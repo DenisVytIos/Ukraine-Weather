@@ -10,12 +10,9 @@ import UIKit
 
 class ViewController: UIViewController, UISearchResultsUpdating, UITableViewDataSource, UITableViewDelegate {
   
- 
+  @IBOutlet weak var tableView: UITableView!
   
    var timer = Timer()
-  
-  
-  @IBOutlet weak var tableView: UITableView!
 
   var tempDetail: String?
   var dataIsReady: Bool = false
@@ -29,8 +26,15 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
     }
   }
  
-  // tempVar
-  var tempVar: String?
+  var temperatureMain: String?
+  var windSpeedMain: String?
+  var airPressureMain: String?
+  var humidityMain: String?
+  var descriptionWeatherMain: String?
+  var sunriseTimeMain: Float?
+  var sunsetTimeMain: Float?
+  var timeAndDateMain: String?
+  var temp: Date?
   
   override func viewDidLayoutSubviews() {
   
@@ -39,6 +43,7 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
     super.loadView()
 //    self.tempView.round()
 //    self.view = MainView()
+    
   
   }
 
@@ -99,13 +104,15 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
     cell.backgroundColor = UIColor.gray
     
    cell.cityLabel.text = self.offerModel.city!.name
-//    CoreDataManager.shared.save(city: self.offerModel.city!.name ?? "City")
-    
+
    cell.timeLabel.text = self.offerModel.list![indexPath.row].dt_txt
-    print(self.offerModel.list![indexPath.row].dt_txt)
+    self.timeAndDateMain = self.offerModel.list![indexPath.row].dt_txt
+    
+   
+    
     
     cell.windSpeedlabel.text = String(format: "%.2f m/s", self.offerModel.list![indexPath.row].wind!.speed!)
-    print(String(format: "%.0f", self.offerModel.list![indexPath.row].wind!.speed!))
+    
     
      let kelvinTemp = self.offerModel.list![indexPath.row].main!.temp!
       let celsiusTemp = kelvinTemp - 273.15
@@ -120,9 +127,27 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
 //    self.tempVar = self.offerModel.list![indexPath.row].main!.temp!.description
 //   CoreDataManager.shared.save(temp: self.offerModel.list![indexPath.row].main!.temp!)
 //     cell.tempMaxLabel.text = self.offerModel.list![indexPath.row].main!.temp_max!.description
+   
+   
+
+    
+   cell.airPressureLabel.text = String(format: "%.0f hpa", self.offerModel.list![indexPath.row].main!.pressure!)
+    
+    self.humidityMain = String(format: "%.0f", self.offerModel.list![indexPath.row].main!.humidity!) + "%"
+    self.descriptionWeatherMain = self.offerModel.list![indexPath.row].weather![0].description!.description
+    
+    
+    //
+    self.sunriseTimeMain = self.offerModel.city!.sunrise!
+    self.sunsetTimeMain = self.offerModel.city!.sunset!
+//    self.temp = ViewController.toDate(sunsetTimeMain)
+    
+    print(self.offerModel.city!.sunset!.getDateStringFromUnixTime(dateStyle: .none, timeStyle: .short))
     return cell
   }
+  
    //MARK: - UITableViewDelegate
+  
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return UITableView.automaticDimension
   }
@@ -131,19 +156,26 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
   }
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let cell = tableView.cellForRow(at: indexPath) as! CustomTableViewCell
-    self.tempVar = cell.inTempViewLabel.text
+    self.temperatureMain = cell.inTempViewLabel.text
 //    navigationController?.pushViewController(DetailViewController(parameter: "\(self.offerModel.city!.name ?? "City")"), animated: true)
     
     }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    let destinationVC: DetailViewController = segue.destination as! DetailViewController
-    if let identifier = segue.identifier {
+    let _: DetailViewController = segue.destination as! DetailViewController
+    if let _ = segue.identifier {
       if let cell = sender as? CustomTableViewCell,
-      let indexPath = tableView.indexPath(for: cell),
+      let _ = tableView.indexPath(for: cell),
         let seguedToMVC = segue.destination as? DetailViewController {
-        seguedToMVC.city = self.offerModel.city!.name ?? "City"
-        seguedToMVC.tempMain = cell.inTempViewLabel.text
+        seguedToMVC.cityDetail = self.offerModel.city!.name ?? "City"
+        seguedToMVC.temperatureDetail = cell.inTempViewLabel.text
+        seguedToMVC.airPressureDetail = cell.airPressureLabel.text
+        seguedToMVC.windSpeedDetail = cell.windSpeedlabel.text
+        seguedToMVC.humidityDetail = self.humidityMain
+        seguedToMVC.descriptionWeatherDetail = self.descriptionWeatherMain
+        seguedToMVC.sunsetTimeDetail = self.sunsetTimeMain
+        seguedToMVC.sunriseTimeDetail = self.sunriseTimeMain
+        seguedToMVC.timeAndDateDetail = self.timeAndDateMain
         
       }
     
@@ -154,4 +186,6 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
     }
 
 }
+  
+
 }

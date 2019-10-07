@@ -11,28 +11,83 @@ import UIKit
 class DetailViewController: UIViewController {
   
 
-//  let parameter: String = ""
-    var city: String?
-  var tempMain: String?
-  @IBOutlet weak var mainTempLabel: UILabel!
-  
-  @IBOutlet weak var label: UILabel!
-//    init(parameter: String) {
-//    self.parameter = parameter
-//      super.init(nibName: nil, bundle:)
-//  }
-//
-//  required init?(coder aDecoder: NSCoder) {
-//    fatalError("init(coder:) has not been implemented")
-//  }
 
   
- 
+    var cityDetail: String?
+  var temperatureDetail: String?
+  
+  var windSpeedDetail: String?
+  var airPressureDetail: String?
+  var humidityDetail: String?
+  var descriptionWeatherDetail: String?
+  var sunriseTimeDetail: Float?
+  var sunsetTimeDetail: Float?
+  var timeAndDateDetail: String?
+  
+  @IBOutlet weak var mainTempLabel: UILabel!
+  
+  @IBOutlet weak var windSpeedLabel: UILabel!
+  
+  @IBOutlet weak var airPressureLabel: UILabel!
+  
+  @IBOutlet weak var humidityLabel: UILabel!
+  
+  @IBOutlet weak var descriptionWeatherLabel: UILabel!
+  
+  @IBOutlet weak var sunsetTimeLabel: UILabel!
+  
+  @IBOutlet weak var sunriseTimeLabel: UILabel!
+  
+  @IBOutlet weak var dayOfMonthLabel: UILabel!
+  
+  @IBOutlet weak var monthLabel: UILabel!
+  
+  @IBOutlet weak var dayOfWeekLabel: UILabel!
+  
   override func viewDidLoad() {
         super.viewDidLoad()
     self.mainTempLabel.textColor = UIColor.black
-    self.mainTempLabel.text = tempMain
-    print(self.tempMain)
+    self.mainTempLabel.text = temperatureDetail
+    self.airPressureLabel.text = airPressureDetail
+    self.windSpeedLabel.text = windSpeedDetail
+    self.humidityLabel.text = humidityDetail
+    self.descriptionWeatherLabel.text = descriptionWeatherDetail
+    
+    self.sunriseTimeLabel.text = sunriseTimeDetail?.getDateStringFromUnixTime(dateStyle: .none, timeStyle: .short)
+    self.sunsetTimeLabel.text = sunsetTimeDetail?.getDateStringFromUnixTime(dateStyle: .none, timeStyle: .short)
+    
+    self.monthLabel.text = timeAndDateDetail?.toDate(withFormat: "yyyy-MM-dd HH:mm:ss")?.month
+    self.dayOfMonthLabel.text = timeAndDateDetail?.toDate(withFormat: "yyyy-MM-dd HH:mm:ss")?.day
+    self.dayOfWeekLabel.text = timeAndDateDetail?.toDate(withFormat: "yyyy-MM-dd HH:mm:ss")?.dayOfWeek()!
+    
+    
+    
+//    var isoDate = self.offerModel.list![indexPath.row].dt_txt!
+//    var i = isoDate.toDate(withFormat: "yyyy-MM-dd HH:mm:ss")!
+//    print(i.month)
+//    let calendar = Calendar.current
+//    //    let components = calendar.dateComponents([.year, .month, .day, .hour], from: i)
+//    
+//    _ = NSCalendar.current
+//    let components = calendar.dateComponents([.day , .month , .year], from: i)
+//
+//    let year =  components.year
+//    let month = components.month
+//    let day = components.day
+//    print(i)
+//    print(day)
+//    print(month)
+    //    let dateFormatter = DateFormatter()
+    //    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+    //    dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+    //    let date = dateFormatter.date(from:isoDate)
+    //    print(date)
+    
+    
+    //  "dt_txt": "2019-09-08 18:00:00"
+    
+    
+    
     setupNavigationBar()
 //     self.view.backgroundColor = UIColor.green
 //    self.label.text = self.city
@@ -46,11 +101,13 @@ class DetailViewController: UIViewController {
   fileprivate func setupNavigationBar() {
     
    
-    self.navigationItem.title = self.city
+    self.navigationItem.title = self.cityDetail
     self.navigationController?.navigationBar.prefersLargeTitles = true
     
     
   }
+  
+ 
     /*
     // MARK: - Navigation
 
