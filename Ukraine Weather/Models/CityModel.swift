@@ -9,6 +9,13 @@
 import Foundation
 
 class CityModel: Codable {
+  var id: Float?
+  var name: String?
+  var country: String?
+  var population: Float?
+  var sunrise: Float?
+  var sunset: Float?
+}
 //  city": {
 //      "id": 703448,
 //      "name": "Kiev",
@@ -22,11 +29,3 @@ class CityModel: Codable {
 //      "sunrise": 1570075218,
 //      "sunset": 1570116824
 //}
-  var id: Float?
-  var name: String?
-  var country: String?
-  var population: Float?
-
-  var sunrise: Float?
-  var sunset: Float?
-}

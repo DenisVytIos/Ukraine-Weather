@@ -11,72 +11,57 @@ import UIKit
 class ViewController: UIViewController, UISearchResultsUpdating, UITableViewDataSource, UITableViewDelegate {
   
   @IBOutlet weak var tableView: UITableView!
-  
-   var timer = Timer()
-
-  var tempDetail: String?
-  var dataIsReady: Bool = false
-  
-   var offerModel: OfferModel! {
+  private var timer = Timer()
+  private var tempDetail: String?
+  private var dataIsReady: Bool = false
+  private var offerModel: OfferModel! {
     didSet {
       DispatchQueue.main.async {
         self.tableView.reloadData()
-
       }
     }
   }
- 
-  var temperatureMain: String?
-  var windSpeedMain: String?
-  var airPressureMain: String?
-  var humidityMain: String?
-  var descriptionWeatherMain: String?
-  var sunriseTimeMain: Float?
-  var sunsetTimeMain: Float?
-  var timeAndDateMain: String?
-  var temp: Date?
   
-  override func viewDidLayoutSubviews() {
+  private var temperatureMain: String?
+  private var windSpeedMain: String?
+  private var airPressureMain: String?
+  private var humidityMain: String?
+  private var descriptionWeatherMain: String?
+  private var sunriseTimeMain: Float?
+  private var sunsetTimeMain: Float?
+  private var timeAndDateMain: String?
+  private var temp: Date?
   
-  }
-  override func loadView() {
-    super.loadView()
-//    self.tempView.round()
-//    self.view = MainView()
-    
-  
-  }
-
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    self.setupNavigationBar()
-   tableView.dataSource = self
-   tableView.delegate = self
-
-//    self.contentView.tableView.dataSource = self
-    
+    setupNavigationBar()
+    setupTableView()
   }
-
+  private func setupTableView() {
+    tableView.dataSource = self
+    tableView.delegate = self
+    tableView.backgroundColor = UIColor.darkGray
+  }
   fileprivate func setupNavigationBar() {
     self.navigationItem.title = "Weather in Ukraine"
     self.navigationController?.navigationBar.prefersLargeTitles = true
-    
-    
+    // Setup the searchController
     let searchController = UISearchController(searchResultsController: nil)
     searchController.searchResultsUpdater = self
-    
-    
+    searchController.searchBar.placeholder = "Enter the city"
+    searchController.definesPresentationContext = true
+    UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     navigationItem.searchController = searchController
     navigationItem.hidesSearchBarWhenScrolling = false
   }
-    //MARK: - UISearchResultsUpdating
+  
+  //MARK: - UISearchResultsUpdating
   func updateSearchResults(for searchController: UISearchController) {
     let city = searchController.searchBar.text!
     timer.invalidate()
     if city.count > 1 {
-//      withTimeInterval: 1.5,
-      timer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (timer) in
+      //      withTimeInterval: 1.5,
+      timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (timer) in
         NetworkManager.shared.getWeather(city: city, result: { (model) in
           if model != nil {
             self.dataIsReady = true
@@ -99,55 +84,22 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
     let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell") as! CustomTableViewCell
     cell.backgroundColor = UIColor.gray
-    
-   cell.cityLabel.text = self.offerModel.city!.name
-
-   cell.timeLabel.text = self.offerModel.list![indexPath.row].dt_txt
-    self.timeAndDateMain = self.offerModel.list![indexPath.row].dt_txt
-    
-   
-    
-    
+    cell.cityLabel.text = self.offerModel.city!.name
+    cell.timeLabel.text = self.offerModel.list![indexPath.row].dt_txt
+    self.timeAndDateMain =  cell.timeLabel.text
     cell.windSpeedlabel.text = String(format: "%.2f m/s", self.offerModel.list![indexPath.row].wind!.speed!)
-    
-    
-     let kelvinTemp = self.offerModel.list![indexPath.row].main!.temp!
-      let celsiusTemp = kelvinTemp - 273.15
-    let formatedCelsiusTemp = String(format: "%.0f", celsiusTemp)
-      cell.inTempViewLabel.text = formatedCelsiusTemp
-   
-//    self.tempVar = formatedCelsiusTemp
-   
-//      self.tempVar = String(format: "%.0f", celsiusTemp)
-   
-    
-//    self.tempVar = self.offerModel.list![indexPath.row].main!.temp!.description
-//   CoreDataManager.shared.save(temp: self.offerModel.list![indexPath.row].main!.temp!)
-//     cell.tempMaxLabel.text = self.offerModel.list![indexPath.row].main!.temp_max!.description
-   
-   
-
-    
-   cell.airPressureLabel.text = String(format: "%.0f hpa", self.offerModel.list![indexPath.row].main!.pressure!)
-    
+    cell.inTempViewLabel.text = String(format: "%.0f", self.offerModel.list![indexPath.row].main!.temp! - 273.15)
+    cell.airPressureLabel.text = String(format: "%.0f hpa", self.offerModel.list![indexPath.row].main!.pressure!)
     self.humidityMain = String(format: "%.0f", self.offerModel.list![indexPath.row].main!.humidity!) + "%"
     self.descriptionWeatherMain = self.offerModel.list![indexPath.row].weather![0].description!.description
-    
-    
-    //
     self.sunriseTimeMain = self.offerModel.city!.sunrise!
     self.sunsetTimeMain = self.offerModel.city!.sunset!
-//    self.temp = ViewController.toDate(sunsetTimeMain)
-    
-    print(self.offerModel.city!.sunset!.getDateStringFromUnixTime(dateStyle: .none, timeStyle: .short))
     return cell
   }
   
-   //MARK: - UITableViewDelegate
-  
+  //MARK: - UITableViewDelegate
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return UITableView.automaticDimension
   }
@@ -157,15 +109,12 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let cell = tableView.cellForRow(at: indexPath) as! CustomTableViewCell
     self.temperatureMain = cell.inTempViewLabel.text
-//    navigationController?.pushViewController(DetailViewController(parameter: "\(self.offerModel.city!.name ?? "City")"), animated: true)
-    
-    }
-  
+  }
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     let _: DetailViewController = segue.destination as! DetailViewController
     if let _ = segue.identifier {
       if let cell = sender as? CustomTableViewCell,
-      let _ = tableView.indexPath(for: cell),
+        let _ = tableView.indexPath(for: cell),
         let seguedToMVC = segue.destination as? DetailViewController {
         seguedToMVC.cityDetail = self.offerModel.city!.name ?? "City"
         seguedToMVC.temperatureDetail = cell.inTempViewLabel.text
@@ -178,14 +127,6 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
         seguedToMVC.timeAndDateDetail = self.timeAndDateMain
         
       }
-    
-// destinationVC.city = self.offerModel.city!.name ?? "City"
-//    destinationVC.tempMain = self.tempVar
-// CoreDataManager.shared.load()
-  
     }
-
-}
-  
-
+  }
 }

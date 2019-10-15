@@ -9,6 +9,12 @@
 import Foundation
 
 class MainOfferModel: Codable {
+  var temp: Float?
+  var tempMin: Float?
+  var tempMax: Float?
+  var pressure: Float?
+  var humidity: Float?
+}
 
 //  "main": {
 //          "temp": 290.64,
@@ -20,10 +26,4 @@ class MainOfferModel: Codable {
 //  "humidity": 67,
 //  "temp_kf": -0.31
 //  },
-  
-  var temp: Float?
-  var tempMin: Float?
-  var tempMax: Float?
-  var pressure: Float?
-  var humidity: Float?
-}
+

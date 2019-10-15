@@ -62,13 +62,13 @@ func load() {
   let request: NSFetchRequest<MainOfferEntity> = MainOfferEntity.fetchRequest()
   let mainOfferEntitys = try? container.viewContext.fetch(request)
    print("load")
-  print(mainOfferEntitys?.last?.temp)
+  print(mainOfferEntitys?.last?.temp ?? "0")
 }
   func loadTemp() ->  String {
     let request: NSFetchRequest<MainOfferEntity> = MainOfferEntity.fetchRequest()
     let mainOfferEntitys = try? container.viewContext.fetch(request)
     print("load")
-    print(mainOfferEntitys?.last?.temp)
+    print(mainOfferEntitys?.last?.temp ?? "0")
    
     return "\(String(describing: mainOfferEntitys?.last?.temp))"
   }

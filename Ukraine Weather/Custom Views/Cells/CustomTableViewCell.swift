@@ -9,32 +9,21 @@
 import UIKit
 
 class CustomTableViewCell: UITableViewCell {
-
   @IBOutlet weak var tempView: UIView!
-  
   @IBOutlet weak var inTempViewLabel: UILabel!
-  
   @IBOutlet weak var cityLabel: UILabel!
-  
   @IBOutlet weak var timeLabel: UILabel!
-  
-
   @IBOutlet weak var airPressureLabel: UILabel!
-  
-  
   @IBOutlet weak var windSpeedlabel: UILabel!
+  @IBOutlet weak var mapImageView: UIImageView!
+  @IBOutlet weak var cloudImageView: UIImageView!
   
-  
-
   override var reuseIdentifier: String? {
     return "CustomTableViewCell"
   }
-  
   override func didMoveToSuperview() {
     self.tempView.round()
-//    self.inTempViewLabel.text = "6"
-    
+    self.cloudImageView.tintColor = UIColor.white
+    self.mapImageView.tintColor = UIColor.white
   }
-
-
 }

@@ -9,8 +9,8 @@
 import Foundation
 
 class NetworkManager {
-  private init () {}
   
+  private init () {}
   static let shared = NetworkManager()
   
   func getWeather(city: String, result: @escaping ((OfferModel?) -> ())) {
@@ -18,10 +18,8 @@ class NetworkManager {
     urlComponents.scheme = "https"
     urlComponents.host = "api.openweathermap.org"
     urlComponents.path = "/data/2.5/forecast"
-    
     urlComponents.queryItems = [URLQueryItem(name: "q", value: city), URLQueryItem(name: "appid",
                                                                                    value: "7714d6122dd839b45d181c53b0f4ecfc")]
-    
     var request = URLRequest(url: urlComponents.url!)
     request.httpMethod = "GET"
     
@@ -30,15 +28,13 @@ class NetworkManager {
       if error == nil {
         let decoder = JSONDecoder()
         var decoderOfferModel: OfferModel?
-        
         if data != nil {
           decoderOfferModel = try? decoder.decode(OfferModel.self, from: data!)
-          
         }
         result(decoderOfferModel)
       } else {
         print(error as Any)
       }
-    }.resume()
+      }.resume()
   }
 }
