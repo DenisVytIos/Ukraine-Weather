@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UISearchResultsUpdating, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
   private var timer = Timer()
@@ -32,49 +32,73 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
   private var timeAndDateMain: String?
   private var temp: Date?
   
+  let searchController = UISearchController(searchResultsController: nil)
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupSearchBar()
     setupNavigationBar()
     setupTableView()
   }
+  
   private func setupTableView() {
     tableView.dataSource = self
     tableView.delegate = self
     tableView.backgroundColor = UIColor.darkGray
   }
-  fileprivate func setupNavigationBar() {
-    self.navigationItem.title = "Weather in Ukraine"
-    self.navigationController?.navigationBar.prefersLargeTitles = true
-    // Setup the searchController
-    let searchController = UISearchController(searchResultsController: nil)
+  
+  private func setupSearchBar() {
+    navigationItem.searchController = searchController
+    searchController.searchBar.delegate = self
     searchController.searchResultsUpdater = self
     searchController.searchBar.placeholder = "Enter the city"
     searchController.definesPresentationContext = true
     UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-    navigationItem.searchController = searchController
     navigationItem.hidesSearchBarWhenScrolling = false
+    navigationController?.navigationBar.prefersLargeTitles = true
   }
   
-  //MARK: - UISearchResultsUpdating
-  func updateSearchResults(for searchController: UISearchController) {
-    let city = searchController.searchBar.text!
-    timer.invalidate()
-    if city.count > 1 {
-      //      withTimeInterval: 1.5,
-      timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (timer) in
-        NetworkManager.shared.getWeather(city: city, result: { (model) in
-          if model != nil {
-            self.dataIsReady = true
-            self.offerModel = model
-            
-          }
-        })
-        
-      })
+  fileprivate func setupNavigationBar() {
+    self.navigationItem.title = "Weather in Ukraine"
+    
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    let _: DetailViewController = segue.destination as! DetailViewController
+    if let _ = segue.identifier {
+      if let cell = sender as? CustomTableViewCell,
+        let _ = tableView.indexPath(for: cell),
+        let seguedToMVC = segue.destination as? DetailViewController {
+        seguedToMVC.cityDetail = self.offerModel.city!.name ?? "City"
+        seguedToMVC.temperatureDetail = cell.inTempViewLabel.text
+        seguedToMVC.airPressureDetail = cell.airPressureLabel.text
+        seguedToMVC.windSpeedDetail = cell.windSpeedlabel.text
+        seguedToMVC.humidityDetail = self.humidityMain
+        seguedToMVC.descriptionWeatherDetail = self.descriptionWeatherMain
+        seguedToMVC.sunsetTimeDetail = self.sunsetTimeMain
+        seguedToMVC.sunriseTimeDetail = self.sunriseTimeMain
+        seguedToMVC.timeAndDateDetail = self.timeAndDateMain
+      }
     }
   }
+}
+
+//MARK: - UITableViewDelegate, UITableViewDataSource
+extension ViewController: UITableViewDelegate, UITableViewDataSource  {
   
-  //MARK: - UITableViewDataSource
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return UITableView.automaticDimension
+  }
+  
+  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 500
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let cell = tableView.cellForRow(at: indexPath) as! CustomTableViewCell
+    self.temperatureMain = cell.inTempViewLabel.text
+  }
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if dataIsReady {
       return self.offerModel.list!.count
@@ -98,35 +122,29 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewData
     self.sunsetTimeMain = self.offerModel.city!.sunset!
     return cell
   }
-  
-  //MARK: - UITableViewDelegate
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return UITableView.automaticDimension
-  }
-  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 500
-  }
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let cell = tableView.cellForRow(at: indexPath) as! CustomTableViewCell
-    self.temperatureMain = cell.inTempViewLabel.text
-  }
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    let _: DetailViewController = segue.destination as! DetailViewController
-    if let _ = segue.identifier {
-      if let cell = sender as? CustomTableViewCell,
-        let _ = tableView.indexPath(for: cell),
-        let seguedToMVC = segue.destination as? DetailViewController {
-        seguedToMVC.cityDetail = self.offerModel.city!.name ?? "City"
-        seguedToMVC.temperatureDetail = cell.inTempViewLabel.text
-        seguedToMVC.airPressureDetail = cell.airPressureLabel.text
-        seguedToMVC.windSpeedDetail = cell.windSpeedlabel.text
-        seguedToMVC.humidityDetail = self.humidityMain
-        seguedToMVC.descriptionWeatherDetail = self.descriptionWeatherMain
-        seguedToMVC.sunsetTimeDetail = self.sunsetTimeMain
-        seguedToMVC.sunriseTimeDetail = self.sunriseTimeMain
-        seguedToMVC.timeAndDateDetail = self.timeAndDateMain
-        
-      }
+}
+
+//MARK: - UISearchResultsUpdating
+extension ViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    let city = searchController.searchBar.text!
+    timer.invalidate()
+    if city.count > 1 {
+      //      withTimeInterval: 1.5,
+      timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (timer) in
+        NetworkManager.shared.getWeather(city: city, result: { (model) in
+          if model != nil {
+            self.dataIsReady = true
+            self.offerModel = model
+          }
+        })
+      })
     }
+  }
+}
+
+extension ViewController: UISearchBarDelegate {
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    print(searchText)
   }
 }
