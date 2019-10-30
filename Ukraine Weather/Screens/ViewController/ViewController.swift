@@ -23,6 +23,8 @@ class ViewController: UIViewController {
   }
   
   private var temperatureMain: String?
+  private var temperatureMin: String?
+  private var temperatureMax: String?
   private var windSpeedMain: String?
   private var airPressureMain: String?
   private var humidityMain: String?
@@ -31,6 +33,7 @@ class ViewController: UIViewController {
   private var sunsetTimeMain: Float?
   private var timeAndDateMain: String?
   private var temp: Date?
+ 
   
   let searchController = UISearchController(searchResultsController: nil)
   
@@ -71,6 +74,8 @@ class ViewController: UIViewController {
         let seguedToMVC = segue.destination as? DetailViewController {
         seguedToMVC.cityDetail = self.offerModel.city!.name ?? "City"
         seguedToMVC.temperatureDetail = cell.inTempViewLabel.text
+        seguedToMVC.temperatureMaxDetail = self.temperatureMax
+        seguedToMVC.temperatureMinDetail = self.temperatureMin
         seguedToMVC.airPressureDetail = cell.airPressureLabel.text
         seguedToMVC.windSpeedDetail = cell.windSpeedlabel.text
         seguedToMVC.humidityDetail = self.humidityMain
@@ -78,6 +83,7 @@ class ViewController: UIViewController {
         seguedToMVC.sunsetTimeDetail = self.sunsetTimeMain
         seguedToMVC.sunriseTimeDetail = self.sunriseTimeMain
         seguedToMVC.timeAndDateDetail = self.timeAndDateMain
+        
       }
     }
   }
@@ -120,6 +126,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource  {
     self.descriptionWeatherMain = self.offerModel.list![indexPath.row].weather![0].description!.description
     self.sunriseTimeMain = self.offerModel.city!.sunrise!
     self.sunsetTimeMain = self.offerModel.city!.sunset!
+    print(String(format: "%.0f", self.offerModel.list![indexPath.row].main!.temp_max! - 273.15))
+    print(String(format: "%.0f", self.offerModel.list![indexPath.row].main!.temp_min! - 273.15))
+    self.temperatureMax = String(format: "%.1f", self.offerModel.list![indexPath.row].main!.temp_max! - 273.15)
+    self.temperatureMin = String(format: "%.1f", self.offerModel.list![indexPath.row].main!.temp_min! - 273.15)
+    
     return cell
   }
 }

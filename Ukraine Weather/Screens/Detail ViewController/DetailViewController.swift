@@ -9,9 +9,12 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+ 
   
   var cityDetail: String?
   var temperatureDetail: String?
+  var temperatureMaxDetail: String?
+  var temperatureMinDetail: String?
   var windSpeedDetail: String?
   var airPressureDetail: String?
   var humidityDetail: String?
@@ -20,6 +23,8 @@ class DetailViewController: UIViewController {
   var sunsetTimeDetail: Float?
   var timeAndDateDetail: String?
   
+  
+  @IBOutlet weak var collectionView: UICollectionView!
   @IBOutlet weak var mainTempLabel: UILabel!
   @IBOutlet weak var windSpeedLabel: UILabel!
   @IBOutlet weak var airPressureLabel: UILabel!
@@ -34,10 +39,22 @@ class DetailViewController: UIViewController {
   @IBOutlet weak var sunriseImageView: UIImageView!
   @IBOutlet weak var sunsetImageView: UIImageView!
   
+  var itemMenuArray: [CollectionViewCellModel] = {
+    var blankMenu = CollectionViewCellModel()
+    blankMenu.iconWeatherName = "Cola"
+    return [blankMenu]
+  }()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupNavigationBar()
     setupLabelAndView()
+    setupCollectionView()
+  }
+  
+  fileprivate func setupCollectionView() {
+    collectionView.delegate = self
+    collectionView.dataSource = self
   }
   
   fileprivate func setupNavigationBar() {
@@ -63,4 +80,22 @@ class DetailViewController: UIViewController {
   }
 }
 
+extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  return 4
+  }
+
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCollectionViewCell {
+      itemCell.backgroundColor = UIColor.green
+      itemCell.dateLabel.text = self.timeAndDateDetail
+      itemCell.temperatureMax.text = self.temperatureMaxDetail
+      itemCell.temperatureMin.text = self.temperatureMinDetail
+      return itemCell
+    }
+    return UICollectionViewCell()
+  }
+
+
+}
 
