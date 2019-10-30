@@ -18,7 +18,10 @@ static let shared = CoreDataManager()
 //нам нужен viewContext
 let container = AppDelegate.container
 
-
+    //- Почему не удалены не нужные комментарии
+    //- Нужно исправить форматирование - отступы
+    //- Почему дефолтное значение температуры не 0? Почему оно не забито в .xcdatamodeld файле а здесь?
+    //- Почему обьект называется MainOffer? Это копипаста с другого проекта? Почему в базе данных хранится только одна сущность? Этого достаточно?
   func save() {
   container.viewContext.perform {
     //    cell.timeLabel.text = self.offerModel.list![indexPath.row].dt_txt
@@ -28,6 +31,7 @@ let container = AppDelegate.container
     let mainOfferEntity = MainOfferEntity(context: self.container.viewContext)
     mainOfferEntity.temp = 5
     print("save")
+    //- Почему сдесь логируется save и по факту нет сохранения?
   }
   
 }
@@ -58,6 +62,7 @@ let container = AppDelegate.container
     }
     
   }
+    //- Помему разные функции пошут одинаковый лог это будет сбивать, а не помогать!
 func load() {
   let request: NSFetchRequest<MainOfferEntity> = MainOfferEntity.fetchRequest()
   let mainOfferEntitys = try? container.viewContext.fetch(request)

@@ -74,9 +74,15 @@ class DetailViewController: UIViewController {
     self.descriptionWeatherLabel.text = descriptionWeatherDetail
     self.sunriseTimeLabel.text = sunriseTimeDetail?.getDateStringFromUnixTime(dateStyle: .none, timeStyle: .short)
     self.sunsetTimeLabel.text = sunsetTimeDetail?.getDateStringFromUnixTime(dateStyle: .none, timeStyle: .short)
+    
+    //- Формат даты нужно вынести в отдельную константу либо функцию.
+    //- в функции toDate() этот формат по дефолту забит, зачем его тогда отсюда передавать?
     self.monthLabel.text = timeAndDateDetail?.toDate(withFormat: "yyyy-MM-dd HH:mm:ss")?.month
     self.dayOfMonthLabel.text = timeAndDateDetail?.toDate(withFormat: "yyyy-MM-dd HH:mm:ss")?.day
+    //- Убрать знак восклицания.
+    //- Вообще их нужно избегать везде, использовать if let myVariable...
     self.dayOfWeekLabel.text = timeAndDateDetail?.toDate(withFormat: "yyyy-MM-dd HH:mm:ss")?.dayOfWeek()!
+    
   }
 }
 

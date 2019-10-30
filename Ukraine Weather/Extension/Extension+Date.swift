@@ -9,6 +9,10 @@
 import Foundation
 
 extension Date {
+    //- Между функциями разрыв строки добавляет читабельность кода.
+    //- Это касается всех файлов в проекте
+    //- Поставь в настройках Xcode дефолтный отступ не 2, а 4 пробела.
+    
   func toString(withFormat format: String = "EEEE ، d MMMM yyyy") -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.locale = Locale(identifier: "fa-IR")
@@ -18,6 +22,9 @@ extension Date {
     let str = dateFormatter.string(from: self)
     return str
   }
+    //- Почему переменная называется today а не date?
+    //- Почему метод обьекта, а не класса если в нем не использается self?
+    
   func getDayOfWeek(_ today:String) -> Int? {
     let formatter  = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd"
