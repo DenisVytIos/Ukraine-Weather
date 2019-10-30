@@ -51,6 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // MARK: - Core Data stack
 
+    //- Всю работы с базой данных необходимо вынести в отдельный класс, здесь не должно быть этого кода
   lazy var persistentContainer: NSPersistentContainer = {
       /*
        The persistent container for the application. This implementation

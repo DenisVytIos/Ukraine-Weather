@@ -13,6 +13,7 @@ class NetworkManager {
   private init () {}
   static let shared = NetworkManager()
   
+    //- Почему нет блока с ошибкой в конце выполнения запроса?
   func getWeather(city: String, result: @escaping ((OfferModel?) -> ())) {
     var urlComponents = URLComponents()
     urlComponents.scheme = "https"

@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+//- Никогда не называй так вью контроллеры
+//- например MainViewController or HomeViewController or Details... List...
 class ViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
@@ -21,7 +22,11 @@ class ViewController: UIViewController {
       }
     }
   }
-  
+  //- Хорошая практика в конце имени переменной писать ее тип, например:
+  //- timeAndDateMainString, ...
+  //- Bool переменные просто начинаются с is...
+  //- tempDate, кстати почему у переменной температура тип Date???
+    
   private var temperatureMain: String?
   private var windSpeedMain: String?
   private var airPressureMain: String?
@@ -58,6 +63,8 @@ class ViewController: UIViewController {
     navigationController?.navigationBar.prefersLargeTitles = true
   }
   
+    //- Это настраивается во вью дид лоаде
+    //- Если в фанкции 1 строка и она вызывается один раз, то чаще всего нет смысла чтоб выносить отдельно
   fileprivate func setupNavigationBar() {
     self.navigationItem.title = "Weather in Ukraine"
     
@@ -86,6 +93,7 @@ class ViewController: UIViewController {
 //MARK: - UITableViewDelegate, UITableViewDataSource
 extension ViewController: UITableViewDelegate, UITableViewDataSource  {
   
+    //- Дефолтную высоту и эстимейтед высоту также нужно вынести в ксиб, это улучшит производительность и уменьшит количество кода
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return UITableView.automaticDimension
   }
@@ -100,6 +108,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource  {
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    //- else тут не нужно писать, нужно стараться минимализировать количество кода
     if dataIsReady {
       return self.offerModel.list!.count
     } else {
@@ -108,6 +117,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource  {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    //- Опять закардкожен идентияикатор, этого тут быть не должно
     let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell") as! CustomTableViewCell
     cell.backgroundColor = UIColor.gray
     cell.cityLabel.text = self.offerModel.city!.name
