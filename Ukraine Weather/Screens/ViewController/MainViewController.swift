@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  Ukraine Weather
 //
 //  Created by Denis on 9/7/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
   private var timer = Timer()
@@ -90,7 +90,7 @@ class ViewController: UIViewController {
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
-extension ViewController: UITableViewDelegate, UITableViewDataSource  {
+extension MainViewController: UITableViewDelegate, UITableViewDataSource  {
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return UITableView.automaticDimension
@@ -136,7 +136,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource  {
 }
 
 //MARK: - UISearchResultsUpdating
-extension ViewController: UISearchResultsUpdating {
+extension MainViewController: UISearchResultsUpdating {
   func updateSearchResults(for searchController: UISearchController) {
     let city = searchController.searchBar.text!
     timer.invalidate()
@@ -154,7 +154,7 @@ extension ViewController: UISearchResultsUpdating {
   }
 }
 
-extension ViewController: UISearchBarDelegate {
+extension MainViewController: UISearchBarDelegate {
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     print(searchText)
   }

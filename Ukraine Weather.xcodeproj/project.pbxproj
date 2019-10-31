@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		9204B48D233BDCB10084CF7B /* WindModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9204B48C233BDCB10084CF7B /* WindModel.swift */; };
 		9206698A2323B35F00793D85 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920669892323B35F00793D85 /* AppDelegate.swift */; };
-		9206698C2323B35F00793D85 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9206698B2323B35F00793D85 /* ViewController.swift */; };
+		9206698C2323B35F00793D85 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9206698B2323B35F00793D85 /* MainViewController.swift */; };
 		9206698F2323B35F00793D85 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9206698D2323B35F00793D85 /* Main.storyboard */; };
 		920669922323B35F00793D85 /* Ukraine_Weather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 920669902323B35F00793D85 /* Ukraine_Weather.xcdatamodeld */; };
 		920669942323B36000793D85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 920669932323B36000793D85 /* Assets.xcassets */; };
@@ -38,7 +38,7 @@
 		9204B48C233BDCB10084CF7B /* WindModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindModel.swift; sourceTree = "<group>"; };
 		920669862323B35F00793D85 /* Ukraine Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ukraine Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		920669892323B35F00793D85 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9206698B2323B35F00793D85 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9206698B2323B35F00793D85 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9206698E2323B35F00793D85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		920669912323B35F00793D85 /* Ukraine_Weather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Ukraine_Weather.xcdatamodel; sourceTree = "<group>"; };
 		920669932323B36000793D85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 		92A3335A2326AFB300246B7E /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				9206698B2323B35F00793D85 /* ViewController.swift */,
+				9206698B2323B35F00793D85 /* MainViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -301,7 +301,7 @@
 				920669922323B35F00793D85 /* Ukraine_Weather.xcdatamodeld in Sources */,
 				92151C7F23255F290020C29F /* CityModel.swift in Sources */,
 				92C57B0323261D6500FA00ED /* CustomTableViewCell.swift in Sources */,
-				9206698C2323B35F00793D85 /* ViewController.swift in Sources */,
+				9206698C2323B35F00793D85 /* MainViewController.swift in Sources */,
 				92ED7A3A23253C8B00220DE2 /* MainOfferModel.swift in Sources */,
 				92FA017D2346439F00549B17 /* Extension+Float.swift in Sources */,
 				9206698A2323B35F00793D85 /* AppDelegate.swift in Sources */,
