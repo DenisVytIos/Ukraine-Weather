@@ -162,7 +162,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource  {
     return cell
   }
 }
-////    cell.cityLabel.text = self.offerModel.city!.name
+    cell.cityLabel.text = self.offerModel.city!.name
     //     cell.windSpeedlabel.text = String(format: "%.2f m/s", self.offerModel.list[indexPath.row].wind!.speed!)
     //      if let main = list[indexPath.row].main {
     //
