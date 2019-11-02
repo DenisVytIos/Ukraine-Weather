@@ -12,8 +12,8 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     
   @IBOutlet weak var dateLabel: UILabel!
   @IBOutlet weak var weatherImageView: UIImageView!
-  @IBOutlet weak var temperatureMin: UILabel!
-  @IBOutlet weak var temperatureMax: UILabel!
+  @IBOutlet weak var temperatureMinLabel: UILabel!
+  @IBOutlet weak var temperatureMaxLabel: UILabel!
   var menu: CollectionViewCellModel? {
     didSet{
       dateLabel.text = menu?.iconWeatherName

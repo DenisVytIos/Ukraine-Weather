@@ -754,8 +754,8 @@
                                         </variation>
                                         <connections>
                                             <outlet property="dateLabel" destination="c2s-BW-OU2" id="SZR-xO-DzO"/>
-                                            <outlet property="temperatureMax" destination="Yhs-tA-2H3" id="55T-33-uGq"/>
-                                            <outlet property="temperatureMin" destination="UKS-li-Gv3" id="CBf-Gu-qco"/>
+                                            <outlet property="temperatureMaxLabel" destination="Yhs-tA-2H3" id="55T-33-uGq"/>
+                                            <outlet property="temperatureMinLabel" destination="UKS-li-Gv3" id="CBf-Gu-qco"/>
                                             <outlet property="weatherImageView" destination="gEN-v7-Fff" id="McG-Vj-lWE"/>
                                         </connections>
                                     </collectionViewCell>
@@ -1040,6 +1040,12 @@
                                 <exclude reference="UJz-Gy-RIM"/>
                                 <exclude reference="WW6-8G-Zy3"/>
                                 <exclude reference="bYx-ox-Y2H"/>
+                                <exclude reference="1Qx-yj-eMj"/>
+                                <exclude reference="NAU-kV-5f1"/>
+                                <exclude reference="NQt-sr-Rpi"/>
+                                <exclude reference="e4y-rS-B1o"/>
+                                <exclude reference="gpa-5Q-yad"/>
+                                <exclude reference="pxL-fP-6O0"/>
                                 <exclude reference="64M-1d-dgI"/>
                                 <exclude reference="OXh-OY-9PO"/>
                                 <exclude reference="SzW-Di-MbJ"/>
@@ -1053,12 +1059,6 @@
                                 <exclude reference="7ph-NF-FyY"/>
                                 <exclude reference="b6v-pF-cz1"/>
                                 <exclude reference="vvQ-dv-MQI"/>
-                                <exclude reference="1Qx-yj-eMj"/>
-                                <exclude reference="NAU-kV-5f1"/>
-                                <exclude reference="NQt-sr-Rpi"/>
-                                <exclude reference="e4y-rS-B1o"/>
-                                <exclude reference="gpa-5Q-yad"/>
-                                <exclude reference="pxL-fP-6O0"/>
                                 <exclude reference="koi-pI-pdU"/>
                                 <exclude reference="t7F-nC-8UZ"/>
                                 <exclude reference="vXO-60-NyZ"/>
@@ -1107,14 +1107,14 @@
                                 <include reference="kf3-Y8-IQg"/>
                                 <include reference="WW6-8G-Zy3"/>
                                 <include reference="bYx-ox-Y2H"/>
+                                <include reference="NAU-kV-5f1"/>
+                                <include reference="gpa-5Q-yad"/>
                                 <include reference="64M-1d-dgI"/>
                                 <include reference="OXh-OY-9PO"/>
                                 <include reference="3r2-Ua-SJp"/>
                                 <include reference="cTl-fM-bEH"/>
                                 <include reference="7ph-NF-FyY"/>
                                 <include reference="vvQ-dv-MQI"/>
-                                <include reference="NAU-kV-5f1"/>
-                                <include reference="gpa-5Q-yad"/>
                                 <include reference="t7F-nC-8UZ"/>
                                 <include reference="AHO-Qc-l9g"/>
                                 <include reference="rYw-8O-NfB"/>
@@ -1163,6 +1163,10 @@
                                 <include reference="7wf-1d-Xad"/>
                                 <include reference="NCx-7J-aUd"/>
                                 <exclude reference="UJz-Gy-RIM"/>
+                                <include reference="1Qx-yj-eMj"/>
+                                <exclude reference="NQt-sr-Rpi"/>
+                                <include reference="e4y-rS-B1o"/>
+                                <exclude reference="pxL-fP-6O0"/>
                                 <include reference="SzW-Di-MbJ"/>
                                 <exclude reference="Wdf-5u-LSu"/>
                                 <include reference="szQ-uf-meC"/>
@@ -1170,10 +1174,6 @@
                                 <include reference="uLG-KJ-oJD"/>
                                 <include reference="1gF-fA-fJA"/>
                                 <include reference="b6v-pF-cz1"/>
-                                <include reference="1Qx-yj-eMj"/>
-                                <exclude reference="NQt-sr-Rpi"/>
-                                <include reference="e4y-rS-B1o"/>
-                                <exclude reference="pxL-fP-6O0"/>
                                 <include reference="koi-pI-pdU"/>
                                 <include reference="vXO-60-NyZ"/>
                                 <include reference="8tN-tx-Eyz"/>

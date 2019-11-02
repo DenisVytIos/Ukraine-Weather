@@ -11,17 +11,17 @@ import UIKit
 class DetailViewController: UIViewController {
  
   
-  var cityDetail: String?
-  var temperatureDetail: String?
-  var temperatureMaxDetail: String?
-  var temperatureMinDetail: String?
-  var windSpeedDetail: String?
-  var airPressureDetail: String?
-  var humidityDetail: String?
-  var descriptionWeatherDetail: String?
-  var sunriseTimeDetail: Float?
-  var sunsetTimeDetail: Float?
-  var timeAndDateDetail: String?
+  var cityDetailString: String?
+  var temperatureDetailString: String?
+  var temperatureMaxDetailString: String?
+  var temperatureMinDetailString: String?
+  var windSpeedDetailString: String?
+  var airPressureDetailString: String?
+  var humidityDetailString: String?
+  var descriptionWeatherDetailString: String?
+  var sunriseTimeDetailFloat: Float?
+  var sunsetTimeDetailFloat: Float?
+  var timeAndDateDetailString: String?
   
   
   @IBOutlet weak var collectionView: UICollectionView!
@@ -58,7 +58,7 @@ class DetailViewController: UIViewController {
   }
   
   fileprivate func setupNavigationBar() {
-    self.navigationItem.title = self.cityDetail
+    self.navigationItem.title = self.cityDetailString
     self.navigationController?.navigationBar.prefersLargeTitles = true
   }
   
@@ -67,16 +67,24 @@ class DetailViewController: UIViewController {
     self.sunsetImageView.tintColor = UIColor.white
     self.sunriseImageView.tintColor = UIColor.white
     self.mainTempLabel.textColor = UIColor.black
-    self.mainTempLabel.text = temperatureDetail
-    self.airPressureLabel.text = airPressureDetail
-    self.windSpeedLabel.text = windSpeedDetail
-    self.humidityLabel.text = humidityDetail
-    self.descriptionWeatherLabel.text = descriptionWeatherDetail
-    self.sunriseTimeLabel.text = sunriseTimeDetail?.getDateStringFromUnixTime(dateStyle: .none, timeStyle: .short)
-    self.sunsetTimeLabel.text = sunsetTimeDetail?.getDateStringFromUnixTime(dateStyle: .none, timeStyle: .short)
-    self.monthLabel.text = timeAndDateDetail?.toDate(withFormat: "yyyy-MM-dd HH:mm:ss")?.month
-    self.dayOfMonthLabel.text = timeAndDateDetail?.toDate(withFormat: "yyyy-MM-dd HH:mm:ss")?.day
-    self.dayOfWeekLabel.text = timeAndDateDetail?.toDate(withFormat: "yyyy-MM-dd HH:mm:ss")?.dayOfWeek()!
+    self.mainTempLabel.text = temperatureDetailString
+    self.airPressureLabel.text = airPressureDetailString
+    self.windSpeedLabel.text = windSpeedDetailString
+    self.humidityLabel.text = humidityDetailString
+    self.descriptionWeatherLabel.text = descriptionWeatherDetailString
+    self.sunriseTimeLabel.text = sunriseTimeDetailFloat?.getDateStringFromUnixTime(dateStyle: .none, timeStyle: .short)
+    self.sunsetTimeLabel.text = sunsetTimeDetailFloat?.getDateStringFromUnixTime(dateStyle: .none, timeStyle: .short)
+    
+    //- Формат даты нужно вынести в отдельную константу либо функцию.
+    //- в функции toDate() этот формат по дефолту забит, зачем его тогда отсюда передавать?
+//    self.monthLabel.text = timeAndDateDetailString?.toDate(withFormat: "yyyy-MM-dd HH:mm:ss")?.month
+    self.monthLabel.text = timeAndDateDetailString?.toDate()?.month
+    self.dayOfMonthLabel.text = timeAndDateDetailString?.toDate()?.day
+    //- Убрать знак восклицания.
+    //- Вообще их нужно избегать везде, использовать if let myVariable...
+    if let dayOfWeekString = timeAndDateDetailString?.toDate()?.dayOfWeek() {
+      self.dayOfWeekLabel.text = dayOfWeekString
+    }
   }
 }
 
@@ -88,9 +96,9 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCollectionViewCell {
       itemCell.backgroundColor = UIColor.green
-      itemCell.dateLabel.text = self.timeAndDateDetail
-      itemCell.temperatureMax.text = self.temperatureMaxDetail
-      itemCell.temperatureMin.text = self.temperatureMinDetail
+      itemCell.dateLabel.text = self.timeAndDateDetailString
+      itemCell.temperatureMaxLabel.text = self.temperatureMaxDetailString
+      itemCell.temperatureMinLabel.text = self.temperatureMinDetailString
       return itemCell
     }
     return UICollectionViewCell()

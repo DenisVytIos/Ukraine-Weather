@@ -18,12 +18,12 @@ class CustomTableViewCell: UITableViewCell {
   @IBOutlet weak var mapImageView: UIImageView!
   @IBOutlet weak var cloudImageView: UIImageView!
   
-  override var reuseIdentifier: String? {
-    return "CustomTableViewCell"
-  }
+  static var identifierCustomTableViewCell = "CustomTableViewCell"
+
   override func didMoveToSuperview() {
     self.tempView.round()
     self.cloudImageView.tintColor = UIColor.white
     self.mapImageView.tintColor = UIColor.white
   }
+  
 }
