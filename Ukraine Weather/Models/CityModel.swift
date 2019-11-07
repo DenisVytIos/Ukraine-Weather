@@ -9,12 +9,12 @@
 import Foundation
 
 class CityModel: Codable {
-  var id: Float?
-  var name: String?
-  var country: String?
-  var population: Float?
-  var sunrise: Float?
-  var sunset: Float?
+    var id: Float?
+    var name: String?
+    var country: String?
+    var population: Float?
+    var sunrise: Float?
+    var sunset: Float?
 }
 //  city": {
 //      "id": 703448,

@@ -9,7 +9,7 @@
 import Foundation
 
 class WindModel: Codable  {
-  var speed: Float?
+    var speed: Float?
 }
 //  wind": {
 //  "speed": 4.61,

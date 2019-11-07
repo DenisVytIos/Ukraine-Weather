@@ -9,10 +9,10 @@
 import Foundation
 
 class WeatherModel: Codable {
-  var id: Float?
-  var main: String?
-  var description: String?
-  var icon: String?
+    var id: Float?
+    var main: String?
+    var description: String?
+    var icon: String?
 }
 //  "weather": [
 //  {

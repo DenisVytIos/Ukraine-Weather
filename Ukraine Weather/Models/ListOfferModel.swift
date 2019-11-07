@@ -9,11 +9,11 @@
 import Foundation
 
 class ListOfferModel: Codable {
-  var dt: Float?
-  var main: MainOfferModel?
-  var dt_txt: String?
-  var wind: WindModel?
-  var weather: [WeatherModel]?
+    var dt: Float?
+    var main: MainOfferModel?
+    var dt_txt: String?
+    var wind: WindModel?
+    var weather: [WeatherModel]?
 }
 //  "list": [
 //  {

@@ -9,8 +9,8 @@
 import Foundation
 
 struct CollectionViewCellModel {
-  var date: String?
-  var tempMin: Float?
-  var tempMax: Float?
-  var iconWeatherName: String?
+    var date: String?
+    var tempMin: String?
+    var tempMax: String?
+    var iconWeatherName: String?
 }
