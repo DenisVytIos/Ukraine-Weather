@@ -23,9 +23,13 @@ class MainViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                
             }
         }
     }
+    
+    
+    
     //- Хорошая практика в конце имени переменной писать ее тип, например:
     //- timeAndDateMainString, ...
     //- Bool переменные просто начинаются с is...
@@ -51,7 +55,7 @@ class MainViewController: UIViewController {
         navigationItem.title = "Weather in Ukraine"
         setupSearchBar()
         setupTableView()
-        CoreDataManager.shared.save(city: "Kiev")
+        CoreDataManager.shared.save()
     }
     
     private func setupTableView() {
@@ -105,13 +109,13 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource  {
     
     //- Дефолтную высоту и эстимейтед высоту также нужно вынести в ксиб, это улучшит производительность и уменьшит количество кода
-//      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UITableView.automaticDimension
-//      }
-//      
-//      func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 500
-//      }
+    //      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    //        return UITableView.automaticDimension
+    //      }
+    //      
+    //      func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    //        return 500
+    //      }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! CustomTableViewCell
         self.temperatureMainString = cell.inTempViewLabel.text

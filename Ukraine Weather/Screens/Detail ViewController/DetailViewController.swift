@@ -22,8 +22,14 @@ class DetailViewController: UIViewController {
     var sunriseTimeDetailFloat: Float?
     var sunsetTimeDetailFloat: Float?
     var timeAndDateDetailString: String?
-    var offerModelDetail: OfferModel!
     
+    var offerModelDetail: OfferModel! {
+        didSet {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var mainTempLabel: UILabel!
@@ -40,49 +46,13 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var sunriseImageView: UIImageView!
     @IBOutlet weak var sunsetImageView: UIImageView!
     
-   
-    func i() -> String {
-        return self.offerModelDetail?.city?.name ?? ""
-    }
-    
-    var itemMenuArray: [CollectionViewCellModel] = {
-        var blankMenu = CollectionViewCellModel()
-        
-        
-        blankMenu.iconWeatherName = "cloud"
-        blankMenu.tempMax = CoreDataManager.shared.loadCity()
-        blankMenu.tempMin = "-5"
-        blankMenu.date = "Tue"
-    
-        
-        
-        var blankMenu2 = CollectionViewCellModel()
-        blankMenu2.iconWeatherName = "cloud"
-         blankMenu2.tempMax = "12"
-        blankMenu2.tempMin = "-6"
-         blankMenu2.date = "Tue"
-        
-        var blankMenu3 = CollectionViewCellModel()
-        blankMenu3.iconWeatherName = "cloud"
-        blankMenu3.tempMax = "16"
-         blankMenu3.tempMin = "-7"
-         blankMenu3.date = "Tue"
-        
-        var blankMenu4 = CollectionViewCellModel()
-        blankMenu4.iconWeatherName = "cloud"
-        blankMenu4.tempMax = "15"
-        blankMenu4.tempMin = "-8"
-         blankMenu4.date = "Tue"
-        
-        return [blankMenu, blankMenu2, blankMenu3, blankMenu4]
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
         setupLabelAndView()
         setupCollectionView()
-        
+        CoreDataManager.shared.load()
     }
     
     fileprivate func setupCollectionView() {
@@ -107,14 +77,8 @@ class DetailViewController: UIViewController {
         self.descriptionWeatherLabel.text = descriptionWeatherDetailString
         self.sunriseTimeLabel.text = sunriseTimeDetailFloat?.getDateStringFromUnixTime(dateStyle: .none, timeStyle: .short)
         self.sunsetTimeLabel.text = sunsetTimeDetailFloat?.getDateStringFromUnixTime(dateStyle: .none, timeStyle: .short)
-        
-        //- Формат даты нужно вынести в отдельную константу либо функцию.
-        //- в функции toDate() этот формат по дефолту забит, зачем его тогда отсюда передавать?
-        //    self.monthLabel.text = timeAndDateDetailString?.toDate(withFormat: "yyyy-MM-dd HH:mm:ss")?.month
-        self.monthLabel.text = timeAndDateDetailString?.toDate()?.month
-        self.dayOfMonthLabel.text = timeAndDateDetailString?.toDate()?.day
-        //- Убрать знак восклицания.
-        //- Вообще их нужно избегать везде, использовать if let myVariable...
+        self.monthLabel.text = timeAndDateDetailString?.toDate()?.monthString
+        self.dayOfMonthLabel.text = timeAndDateDetailString?.toDate()?.dayString
         if let dayOfWeekString = timeAndDateDetailString?.toDate()?.dayOfWeek() {
             self.dayOfWeekLabel.text = dayOfWeekString
         }
@@ -123,17 +87,25 @@ class DetailViewController: UIViewController {
 
 extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        var numberOfRowsInSectionInt = 0
+        if let list = self.offerModelDetail.list {
+            numberOfRowsInSectionInt = list.count
+        }
+        return numberOfRowsInSectionInt
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCollectionViewCell {
-            itemCell.menu = itemMenuArray[indexPath.row]
-            
-//            itemCell.backgroundColor = UIColor.green
-//            itemCell.dateLabel.text = self.timeAndDateDetailString
-//            itemCell.temperatureMaxLabel.text = self.temperatureMaxDetailString
-//            itemCell.temperatureMinLabel.text = self.temperatureMinDetailString
+            itemCell.weatherImageView.tintColor = UIColor.white
+            if let list =  self.offerModelDetail.list {
+                itemCell.dateLabel.text = list[indexPath.row].dt_txt?.toDate()?.hourAndDayAndDayOfWeekString
+                if  let main = list[indexPath.row].main {
+                    if let temp_max = main.temp_max, let temp_min = main.temp_min   {
+                        itemCell.temperatureMaxLabel.text = String(format: "%.1f", temp_max - 273.15)
+                        itemCell.temperatureMinLabel.text = String(format: "%.1f", temp_min - 273.15)
+                    }
+                }
+            }
             return itemCell
         }
         return UICollectionViewCell()

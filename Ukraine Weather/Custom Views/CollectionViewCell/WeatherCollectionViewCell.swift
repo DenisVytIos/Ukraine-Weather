@@ -19,14 +19,14 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         
     }
     
-    var menu: CollectionViewCellModel? {
-        didSet{
-            dateLabel.text = menu?.date
-            temperatureMaxLabel.text = menu?.tempMax
-            temperatureMinLabel.text = menu?.tempMin
-            if let image = menu?.iconWeatherName {
-                weatherImageView.image = UIImage(named: image)
-            }
-        }
-    }
+//    var menu: CollectionViewCellModel? {
+//        didSet{
+//            dateLabel.text = menu?.date
+//            temperatureMaxLabel.text = menu?.tempMax
+//            temperatureMinLabel.text = menu?.tempMin
+//            if let image = menu?.iconWeatherName {
+//                weatherImageView.image = UIImage(named: image)
+//            }
+//        }
+//    }
 }

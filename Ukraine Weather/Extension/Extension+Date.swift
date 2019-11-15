@@ -41,15 +41,44 @@ extension Date {
         // or use capitalized(with: locale) if you want
     }
     
-    var month: String {
+    var monthString: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM"
         return dateFormatter.string(from: self)
     }
     
-    var day: String {
+    var dayString: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d"
         return dateFormatter.string(from: self)
+    }
+    
+    var dayAndDayOfWeekString: String {
+        let day = self.dayString
+        let dayOfWeek = self.dayOfWeek() ?? " "
+         return day + " " + dayOfWeek
+        
+    }
+    
+    func timeIn24HourFormat() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: self)
+    }
+    
+    func timeHourIn24HourFormat() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.dateFormat = "HHa"
+        return formatter.string(from: self)
+    }
+    
+    var hourAndDayAndDayOfWeekString: String {
+        let day = self.dayString
+        let dayOfWeek = self.dayOfWeek() ?? " "
+        let hour = self.timeHourIn24HourFormat()
+        return hour + " " + day + " " + dayOfWeek
+        
     }
 }
