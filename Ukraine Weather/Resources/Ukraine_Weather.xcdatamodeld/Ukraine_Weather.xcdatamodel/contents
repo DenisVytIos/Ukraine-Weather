@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="UserEntity" representedClassName=".UserEntity" syncable="YES" codeGenerationType="category">
-        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="WeatherOfferEntity" representedClassName=".WeatherOfferEntity" syncable="YES" codeGenerationType="category">
+        <attribute name="cityString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="humidityString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pressureString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tempMaxString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tempMinString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tempString" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UserEntity" positionX="-54" positionY="-9" width="128" height="103"/>
+        <element name="WeatherOfferEntity" positionX="-610.671875" positionY="-184.234375" width="128" height="133"/>
     </elements>
 </model>

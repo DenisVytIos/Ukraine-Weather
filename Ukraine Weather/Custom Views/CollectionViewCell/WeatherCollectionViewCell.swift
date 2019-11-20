@@ -15,18 +15,5 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var temperatureMinLabel: UILabel!
     @IBOutlet weak var temperatureMaxLabel: UILabel!
     
-    override func didMoveToSuperview() {
-        
-    }
-    
-//    var menu: CollectionViewCellModel? {
-//        didSet{
-//            dateLabel.text = menu?.date
-//            temperatureMaxLabel.text = menu?.tempMax
-//            temperatureMinLabel.text = menu?.tempMin
-//            if let image = menu?.iconWeatherName {
-//                weatherImageView.image = UIImage(named: image)
-//            }
-//        }
-//    }
+    static var identifierWeatherCollectionViewCell = "weatherCell"    
 }

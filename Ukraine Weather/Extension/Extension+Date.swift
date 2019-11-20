@@ -9,9 +9,6 @@
 import Foundation
 
 extension Date {
-    //- Между функциями разрыв строки добавляет читабельность кода.
-    //- Это касается всех файлов в проекте
-    //- Поставь в настройках Xcode дефолтный отступ не 2, а 4 пробела.
     
     func toString(withFormat format: String = "EEEE ، d MMMM yyyy") -> String {
         let dateFormatter = DateFormatter()
@@ -22,8 +19,6 @@ extension Date {
         let str = dateFormatter.string(from: self)
         return str
     }
-    //- Почему переменная называется today а не date?
-    //- Почему метод обьекта, а не класса если в нем не использается self?
     
     static func getDayOfWeek(_ date: String) -> Int? {
         let formatter  = DateFormatter()
@@ -38,7 +33,6 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"
         return dateFormatter.string(from: self).capitalized
-        // or use capitalized(with: locale) if you want
     }
     
     var monthString: String {
@@ -56,7 +50,7 @@ extension Date {
     var dayAndDayOfWeekString: String {
         let day = self.dayString
         let dayOfWeek = self.dayOfWeek() ?? " "
-         return day + " " + dayOfWeek
+        return day + " " + dayOfWeek
         
     }
     
@@ -79,6 +73,5 @@ extension Date {
         let dayOfWeek = self.dayOfWeek() ?? " "
         let hour = self.timeHourIn24HourFormat()
         return hour + " " + day + " " + dayOfWeek
-        
     }
 }

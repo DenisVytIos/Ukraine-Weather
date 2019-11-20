@@ -10,7 +10,6 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    
     var cityDetailString: String?
     var temperatureDetailString: String?
     var temperatureMaxDetailString: String?
@@ -52,7 +51,9 @@ class DetailViewController: UIViewController {
         setupNavigationBar()
         setupLabelAndView()
         setupCollectionView()
-        CoreDataManager.shared.load()
+        DataManager.shared.getWeatherOffer { weather in
+            print(weather[0].tempString ?? "not found")
+        }
     }
     
     fileprivate func setupCollectionView() {
@@ -95,7 +96,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCollectionViewCell {
+        if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: WeatherCollectionViewCell.identifierWeatherCollectionViewCell, for: indexPath) as? WeatherCollectionViewCell {
             itemCell.weatherImageView.tintColor = UIColor.white
             if let list =  self.offerModelDetail.list {
                 itemCell.dateLabel.text = list[indexPath.row].dt_txt?.toDate()?.hourAndDayAndDayOfWeekString
@@ -110,7 +111,5 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }
         return UICollectionViewCell()
     }
-    
-    
 }
 

@@ -13,7 +13,6 @@ class NetworkManager {
     private init () {}
     static let shared = NetworkManager()
     
-    //- Почему нет блока с ошибкой в конце выполнения запроса?
     func getWeather(city: String, result: @escaping ((OfferModel?, Error?) -> ())) {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
@@ -23,7 +22,6 @@ class NetworkManager {
                                                                                        value: "7714d6122dd839b45d181c53b0f4ecfc")]
         var request = URLRequest(url: urlComponents.url!)
         request.httpMethod = "GET"
-        
         let task = URLSession(configuration: .default)
         task.dataTask(with: request) { (data, response, error) in
             if error == nil {
@@ -49,7 +47,6 @@ class NetworkManager {
                                                                                        value: "7714d6122dd839b45d181c53b0f4ecfc")]
         var request = URLRequest(url: urlComponents.url!)
         request.httpMethod = "GET"
-        
         let task = URLSession(configuration: .default)
         task.dataTask(with: request) { (data, response, error) in
             if error == nil {

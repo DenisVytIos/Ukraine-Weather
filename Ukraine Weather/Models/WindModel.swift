@@ -11,6 +11,3 @@ import Foundation
 class WindModel: Codable  {
     var speed: Float?
 }
-//  wind": {
-//  "speed": 4.61,
-//  "deg": 144.276

@@ -25,5 +25,4 @@ class CustomTableViewCell: UITableViewCell {
         self.cloudImageView.tintColor = UIColor.white
         self.mapImageView.tintColor = UIColor.white
     }
-    
 }

@@ -14,11 +14,4 @@ class WeatherModel: Codable {
     var description: String?
     var icon: String?
 }
-//  "weather": [
-//  {
-//  "id": 804,
-//  "main": "Clouds",
-//  "description": "overcast clouds",
-//  "icon": "04d"
-//  }
-//  ],
+
